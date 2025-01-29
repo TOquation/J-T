@@ -254,7 +254,7 @@ const properties: Property[] = [
 const ApartmentGrid: React.FC = () => {
   return (
     <div className="max-w-full p-6">
-      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {properties.map((property) => (
           <div key={property.id} className="w-full">
             <PropertyCard property={property} />
