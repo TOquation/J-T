@@ -31,11 +31,11 @@ const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
     <Card className="relative overflow-hidden rounded-3xl border shadow-lg">
       {/* Top Badge & Favorite Button */}
       <div className="absolute left-0 right-0 top-0 z-10 flex justify-between p-4">
-        <span className="rounded-full bg-white/70 px-3 py-1 text-sm font-medium text-customOrange">
+        <span className="rounded-xl bg-white/70 px-3 py-2 text-sm font-medium text-customOrange">
           Instant Book
         </span>
-        <button className="rounded-full bg-white/95 p-2">
-          <Heart className="h-4 w-4 text-gray-600" />
+        <button className="rounded-full p-2">
+          <Heart fill="#222222" className="h-5 w-5" />
         </button>
       </div>
 
