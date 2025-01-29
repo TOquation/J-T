@@ -25,6 +25,7 @@ interface Property {
 
 const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
   const [currentSlide, setCurrentSlide] = React.useState(0);
+  const [isLiked, setIsLiked] = React.useState(false);
   const [api, setApi] = React.useState<any>(null);
 
   return (
@@ -35,7 +36,13 @@ const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
           Instant Book
         </span>
         <button className="rounded-full p-2">
-          <Heart fill="#222222" className="h-5 w-5" />
+        <Heart
+          className="h-5 w-5"
+          fill={isLiked ? '#222222' : "none"}
+          strokeWidth={2}
+
+          onClick={() => setIsLiked(!isLiked)}
+        />
         </button>
       </div>
 
