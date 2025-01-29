@@ -150,7 +150,7 @@ const properties: Property[] = [
     agencyName: "Eleven Homes",
   },
   {
-    id: 1,
+    id: 2,
     title: "2 Bedroom Luxury Shortlet Apartment",
     location: "Lagos, Nigeria",
     price: "NGN130,000",
@@ -170,7 +170,7 @@ const properties: Property[] = [
     agencyName: "Eleven Homes",
   },
   {
-    id: 1,
+    id: 3,
     title: "2 Bedroom Luxury Shortlet Apartment",
     location: "Lagos, Nigeria",
     price: "NGN130,000",
@@ -190,7 +190,7 @@ const properties: Property[] = [
     agencyName: "Eleven Homes",
   },
   {
-    id: 1,
+    id: 4,
     title: "2 Bedroom Luxury Shortlet Apartment",
     location: "Lagos, Nigeria",
     price: "NGN130,000",
@@ -210,7 +210,7 @@ const properties: Property[] = [
     agencyName: "Eleven Homes",
   },
   {
-    id: 1,
+    id: 5,
     title: "2 Bedroom Luxury Shortlet Apartment",
     location: "Lagos, Nigeria",
     price: "NGN130,000",
@@ -230,7 +230,7 @@ const properties: Property[] = [
     agencyName: "Eleven Homes",
   },
   {
-    id: 1,
+    id: 6,
     title: "2 Bedroom Luxury Shortlet Apartment",
     location: "Lagos, Nigeria",
     price: "NGN130,000",
