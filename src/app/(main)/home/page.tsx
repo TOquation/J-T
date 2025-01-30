@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { Property } from "../types/common";
+import { Property } from "../../types/common";
 import PropertyCard from "@/components/shared/cards/propertyCard";
 
 // Mock Property Data
