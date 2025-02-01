@@ -63,8 +63,8 @@ const PropertyListing = () => {
           </div>
 
           {/* Text Below the Row */}
-          <p className="text-sm text-muted-foreground border-b py-4 border-b-[#D9D9D9]">
-            Last Updated on: Aug 22 2024
+          <p className="text-[16px] font-[500] text-[#000000] border-b py-4 border-b-[#D9D9D9]">
+            <span className="text-[#666666] text-[16px] font-[500]">Last Updated on:</span> Aug 22 2024
           </p>
         </div>
 
