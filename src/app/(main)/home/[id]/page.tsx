@@ -1,3 +1,4 @@
+import PropertyListing from "@/components/propertylisting/PropertyListing";
 import React from "react";
 
 type Props = {
@@ -6,7 +7,11 @@ type Props = {
 };
 
 const page = ({ params }: Props) => {
-  return <div>Single Property</div>;
+  return (
+    <div>
+      <PropertyListing />
+    </div>
+  );
 };
 
 export default page;
