@@ -1,4 +1,8 @@
+import ListingDetails from "@/components/listingdetails/ListingDetails";
 import PropertyListing from "@/components/propertylisting/PropertyListing";
+import PropertyListingPage from "@/components/propertylistingpage/PropertyListingPage";
+
+import { List } from "lucide-react";
 import React from "react";
 
 type Props = {
@@ -8,8 +12,10 @@ type Props = {
 
 const page = ({ params }: Props) => {
   return (
-    <div>
+    <div className="max-w-full p-6">
       <PropertyListing />
+      <ListingDetails />
+      <PropertyListingPage />
     </div>
   );
 };
