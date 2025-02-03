@@ -1,8 +1,15 @@
-import React from 'react';
+import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Wifi, Snowflake, Tv, Utensils, WashingMachine, Waves } from "lucide-react";
+import {
+  Wifi,
+  Snowflake,
+  Tv,
+  Utensils,
+  WashingMachine,
+  Waves,
+} from "lucide-react";
 
 interface ListingDetail {
   label: string;
@@ -40,21 +47,35 @@ const defaultAmenities: Amenity[] = [
   { icon: <Wifi className="w-5 h-5 text-gray-600" />, label: "Wifi" },
   { icon: <Utensils className="w-5 h-5 text-gray-600" />, label: "Cooker" },
   { icon: <Snowflake className="w-5 h-5 text-gray-600" />, label: "AC" },
-  { icon: <WashingMachine className="w-5 h-5 text-gray-600" />, label: "Washing machine" },
+  {
+    icon: <WashingMachine className="w-5 h-5 text-gray-600" />,
+    label: "Washing machine",
+  },
   { icon: <Tv className="w-5 h-5 text-gray-600" />, label: "TV" },
   { icon: <Waves className="w-5 h-5 text-gray-600" />, label: "Swimming pool" },
+];
+
+
+const rules = [
+  { label: "No smoking" },
+  { label: "No partying allowed" },
+  { label: "No unregistered guests" },
+  { label: "No pets allowed" },
 ];
 
 const ListingDetails = ({
   details = defaultDetails,
   amenities = defaultAmenities,
-  host = { name: "Eleven Homes" }
+  host = { name: "Eleven Homes" },
 }: Partial<ListingDetailsProps>) => {
   return (
     <div className="container max-w-3xl p-4 space-y-6">
       {/* Listing Details */}
       <section aria-labelledby="listing-details-heading">
-        <h2 id="listing-details-heading" className="text-xl font-semibold text-[#221E1F]">
+        <h2
+          id="listing-details-heading"
+          className="text-xl font-semibold text-[#221E1F]"
+        >
           Listing Details
         </h2>
         <div className="grid grid-cols-2 gap-y-4 text-sm text-gray-700 mt-2">
@@ -96,15 +117,45 @@ const ListingDetails = ({
             {host.avatarUrl ? (
               <AvatarImage src={host.avatarUrl} alt={host.name} />
             ) : (
-              <AvatarFallback>{host.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+              <AvatarFallback>
+                {host.name
+                  .split(" ")
+                  .map((n) => n[0])
+                  .join("")}
+              </AvatarFallback>
             )}
           </Avatar>
           <span className="font-medium text-gray-800">{host.name}</span>
         </div>
       </section>
-    </div>
 
+      <Separator />
+
+      {/* House rules */}
+      <section>
+        <div className="max-w-3xl space-y-6">
+          <h2 id="rules-heading" className="text-xl font-semibold">
+            House rules
+          </h2>
+          <p className="text-sm text-gray-600 mt-2">
+            You'll be staying in someone's home, so please treat it with care
+            and respect.
+          </p>
+          <div className="grid grid-cols-2 gap-4 mt-2 text-sm text-gray-700">
+            {rules.map((rule, index) => (
+              <div key={index}>
+                <span>{rule.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Separator />
+      
+    </div>
   );
 };
+
 
 export default ListingDetails;

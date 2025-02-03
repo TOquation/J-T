@@ -1,5 +1,13 @@
-import { CheckCircle } from "lucide-react";
-import { Star } from "lucide-react";
+import {
+  Star,
+  Quote,
+  Tag,
+  Mail,
+  MapPin,
+  Lock,
+  CheckCircle,
+  Sparkles,
+} from "lucide-react";
 import DualCalendar from "../shared/calender/dualCalender";
 import {
   Card,
@@ -9,56 +17,8 @@ import {
   CardContent,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Quote } from "lucide-react";
-import { Separator } from "@radix-ui/react-separator";
-
-
-const HouseRules = () => {
-  return (
-    <div className="space-y-4">
-      <h2 className="text-xl font-semibold">House rules</h2>
-      <p className="text-sm text-gray-600">
-        You'll be staying in someone’s home, so please treat it with care and
-        respect.
-      </p>
-      <div className="grid grid-cols-2 gap-2 text-sm text-gray-700">
-        <div className="flex items-center space-x-2">
-          <CheckCircle className="w-4 h-4 text-gray-500" />
-          <span>No smoking</span>
-        </div>
-        <div className="flex items-center space-x-2">
-          <CheckCircle className="w-4 h-4 text-gray-500" />
-          <span>No partying allowed</span>
-        </div>
-        <div className="flex items-center space-x-2">
-          <CheckCircle className="w-4 h-4 text-gray-500" />
-          <span>No unregistered guests</span>
-        </div>
-        <div className="flex items-center space-x-2">
-          <CheckCircle className="w-4 h-4 text-gray-500" />
-          <span>No pets allowed</span>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-
-
-const RatingSummary = () => {
-  return (
-    <div className="text-center space-y-2">
-      <div className="flex justify-center items-center space-x-1 text-yellow-500">
-        <Star className="w-6 h-6 fill-yellow-500" />
-        <span className="text-2xl font-semibold">4.6</span>
-      </div>
-      <p className="text-sm text-gray-600">
-        One of the most loved homes on V Hospitality based on ratings, reviews,
-        and reliability.
-      </p>
-    </div>
-  );
-};
+import { Progress } from "@/components/ui/progress";
+import { Separator } from "@/components/ui/separator";
 
 interface Review {
   name: string;
@@ -66,6 +26,17 @@ interface Review {
   rating: string;
   date: string;
   comment: string;
+}
+
+interface RatingCategoryProps {
+  icon: React.ReactNode;
+  label: string;
+  score: number;
+}
+
+interface RatingBarProps {
+  level: number;
+  count: number;
 }
 
 const reviews: Review[] = [
@@ -94,6 +65,114 @@ const reviews: Review[] = [
       "I booked this apartment for a business trip and found it to be ideal. It’s quiet, well-furnished, and has a comfortable work area with good lighting. The Wi-Fi was reliable.",
   },
 ];
+
+const ratingBars = [
+  { level: 5, count: 85 },
+  { level: 4, count: 12 },
+  { level: 3, count: 2 },
+  { level: 2, count: 1 },
+  { level: 1, count: 0 },
+];
+
+// {ratings}
+const RatingCategory: React.FC<RatingCategoryProps> = ({
+  icon,
+  label,
+  score,
+}) => (
+  <div className="flex flex-col items-center gap-1 flex-1">
+    {icon}
+    <span className="text-[0.9375rem] text-gray-700">{score}</span>
+    <span className="text-[0.8125rem] text-gray-500">{label}</span>
+  </div>
+);
+
+const RatingBar: React.FC<RatingBarProps> = ({ level, count }) => (
+  <div className="flex items-center gap-3 h-6">
+    <span className="text-sm text-gray-600 w-3">{level}</span>
+    <div className="flex-1">
+      <Progress
+        value={count}
+        className="h-[6px] bg-gray-100 [&>div]:bg-[#FDB022]"
+      />
+    </div>
+  </div>
+);
+
+const RatingDetails: React.FC = () => {
+  const ratingCategories = [
+    {
+      icon: <Sparkles className="w-5 h-5 text-gray-600" />,
+      label: "Cleanliness",
+      score: 4.8,
+    },
+    {
+      icon: <CheckCircle className="w-5 h-5 text-gray-600" />,
+      label: "Accuracy",
+      score: 4.9,
+    },
+    {
+      icon: <Lock className="w-5 h-5 text-gray-600" />,
+      label: "Security",
+      score: 4.9,
+    },
+    {
+      icon: <Mail className="w-5 h-5 text-gray-600" />,
+      label: "Agent Support",
+      score: 4.9,
+    },
+    {
+      icon: <MapPin className="w-5 h-5 text-gray-600" />,
+      label: "Location",
+      score: 4.9,
+    },
+    {
+      icon: <Tag className="w-5 h-5 text-gray-600" />,
+      label: "Value",
+      score: 4.9,
+    },
+  ];
+
+  return (
+    <div>
+      {/* Add RatingDetails content here */}
+        <RatingComponent />
+    </div>
+  );
+};
+
+const RatingComponent = () => {
+  return (
+    <div className="flex flex-col items-center space-y-6">
+      {/* Header Rating */}
+      <div className="flex flex-col items-center text-center">
+        <div className="flex items-center gap-2 mb-2">
+          <Star className="w-6 h-6 fill-[#D99100] text-[#D99100]" />
+          <span className="text-3xl font-semibold text-gray-900">4.6</span>
+        </div>
+        <p className="text-sm text-gray-600 max-w-xs">
+          One of the most loved homes on V Hospitality based on ratings, reviews, and reliability
+        </p>
+      </div>
+
+      {/* Overall Rating */}
+      <div className="w-[180px]">
+        <h3 className="font-medium text-gray-900 mb-2">Overall rating</h3>
+        <div className="space-y-1">
+          {ratingBars.map((rating) => (
+            <div key={rating.level} className="flex items-center gap-2">
+              <span className="text-sm text-gray-600 w-3">{rating.level}</span>
+              <Progress
+                value={rating.count}
+                className="h-[6px] bg-gray-100 w-full [&>div]:bg-[#D99100]"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const ReviewsComponent: React.FC = () => {
   return (
@@ -147,9 +226,8 @@ const Location = () => {
 const PropertyListingPage = () => {
   return (
     <div className="space-y-8 p-4">
-      <HouseRules />
       <DualCalendar />
-      <RatingSummary />
+      <RatingDetails />
       <ReviewsComponent />
       <Location />
     </div>
@@ -157,4 +235,4 @@ const PropertyListingPage = () => {
 };
 
 export default PropertyListingPage;
-export { Location, ReviewsComponent, RatingSummary, HouseRules };
+export { Location, ReviewsComponent, RatingDetails };

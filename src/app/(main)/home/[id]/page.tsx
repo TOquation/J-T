@@ -16,6 +16,7 @@ const page = ({ params }: Props) => {
       <PropertyListing />
       <ListingDetails />
       <PropertyListingPage />
+      
     </div>
   );
 };
