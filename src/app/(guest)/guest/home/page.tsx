@@ -1,12 +1,10 @@
-"use client";
+import React from 'react';
+import PropertyCard from '@/components/cards/propertyCard';
+import PropertyNavigation from '@/components/propertynavigation/PropertyNavigation';
+import { properties } from '@/data/properties';
+import BookingSection from '@/sections/home/bookingSection';
 
-import React from "react";
-import BookingSection from "@/components/bookingsection/BookingSection";
-import PropertyCard from "@/components/shared/cards/propertyCard";
-import PropertyNavigation from "@/components/propertynavigation/PropertyNavigation";
-import { properties } from "@/data/properties";
-
-const ApartmentGrid: React.FC = () => {
+const page = () => {
   return (
     <div className="max-w-full p-6">
       <BookingSection />
@@ -22,4 +20,4 @@ const ApartmentGrid: React.FC = () => {
   );
 };
 
-export default ApartmentGrid;
+export default page;

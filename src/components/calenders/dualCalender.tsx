@@ -1,8 +1,8 @@
-"use client";
-import React from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@radix-ui/react-separator";
+'use client';
+import React from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@radix-ui/react-separator';
 
 interface CalendarDate {
   date: number;
@@ -68,25 +68,25 @@ const DualCalendar = () => {
   };
 
   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
   ];
 
-  const navigateMonth = (direction: "prev" | "next") => {
+  const navigateMonth = (direction: 'prev' | 'next') => {
     setCurrentDate(
       new Date(
         currentDate.getFullYear(),
-        currentDate.getMonth() + (direction === "next" ? 1 : -1),
+        currentDate.getMonth() + (direction === 'next' ? 1 : -1),
         1
       )
     );
@@ -121,11 +121,11 @@ const DualCalendar = () => {
 
     return (
       <div>
-        <div className="grid grid-cols-7 gap-1 mb-2">
-          {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+        <div className="mb-2 grid grid-cols-7 gap-1">
+          {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((day) => (
             <div
               key={day}
-              className="text-sm font-medium text-center text-gray-500"
+              className="text-center text-sm font-medium text-gray-500"
             >
               {day.slice(0, 3)}
             </div>
@@ -149,17 +149,11 @@ const DualCalendar = () => {
               <button
                 key={index}
                 onClick={() => handleDateClick(day, isNextMonth)}
-                className={`
-                  p-2 text-sm rounded-md transition-colors
-                  ${day.isCurrentMonth ? "hover:bg-gray-100" : "text-gray-400"}
-                  ${
-                    isSelected
-                      ? "bg-orange-500 text-white hover:bg-orange-600"
-                      : ""
-                  }
-                  ${day.isToday && !isSelected ? "bg-orange-100" : ""}
-                  ${!day.isCurrentMonth ? "invisible" : ""}
-                `}
+                className={`rounded-md p-2 text-sm transition-colors ${day.isCurrentMonth ? 'hover:bg-gray-100' : 'text-gray-400'} ${
+                  isSelected
+                    ? 'bg-orange-500 text-white hover:bg-orange-600'
+                    : ''
+                } ${day.isToday && !isSelected ? 'bg-orange-100' : ''} ${!day.isCurrentMonth ? 'invisible' : ''} `}
               >
                 {formattedDate}
               </button>
@@ -171,17 +165,17 @@ const DualCalendar = () => {
   };
 
   return (
-    <div className="max-w-3xl p-4 bg-white">
-      <div className="flex items-center justify-between mb-4">
+    <div className="max-w-3xl bg-white p-4">
+      <div className="mb-4 flex items-center justify-between">
         <Button
           variant="ghost"
           size="icon"
-          onClick={() => navigateMonth("prev")}
+          onClick={() => navigateMonth('prev')}
         >
-          <ChevronLeft className="w-4 h-4" />
+          <ChevronLeft className="h-4 w-4" />
         </Button>
 
-        <div className="flex justify-around w-full">
+        <div className="flex w-full justify-around">
           <h2 className="text-lg font-semibold">
             {months[currentDate.getMonth()]} {currentDate.getFullYear()}
           </h2>
@@ -193,9 +187,9 @@ const DualCalendar = () => {
         <Button
           variant="ghost"
           size="icon"
-          onClick={() => navigateMonth("next")}
+          onClick={() => navigateMonth('next')}
         >
-          <ChevronRight className="w-4 h-4" />
+          <ChevronRight className="h-4 w-4" />
         </Button>
       </div>
 

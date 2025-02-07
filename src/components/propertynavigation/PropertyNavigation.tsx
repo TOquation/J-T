@@ -1,13 +1,13 @@
 import React from 'react';
-import { 
-  LayoutGrid, 
-  Building, 
-  Home, 
-  Castle, 
-  Warehouse, 
-  UmbrellaIcon, 
-  Hotel, 
-  Settings2 
+import {
+  LayoutGrid,
+  Building,
+  Home,
+  Castle,
+  Warehouse,
+  UmbrellaIcon,
+  Hotel,
+  Settings2,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -30,26 +30,28 @@ const PropertyNavigation = () => {
             {navItems.map((item) => (
               <button
                 key={item.id}
-                className={`flex flex-col items-center min-w-fit relative group ${
-                  item.isActive ? 'text-orange-500' : 'text-gray-600 hover:text-gray-900'
+                className={`group relative flex min-w-fit flex-col items-center ${
+                  item.isActive
+                    ? 'text-orange-500'
+                    : 'text-gray-600 hover:text-gray-900'
                 }`}
               >
-                <item.icon className="w-5 h-5 mb-1.5" />
-                <span className="text-sm whitespace-nowrap">{item.label}</span>
+                <item.icon className="mb-1.5 h-5 w-5" />
+                <span className="whitespace-nowrap text-sm">{item.label}</span>
                 {item.isActive && (
                   <div className="absolute bottom-0 left-0 right-0 -mb-[6px]">
-                    <div className="mx-auto w-full h-0.5 bg-orange-500 rounded-full" />
+                    <div className="mx-auto h-0.5 w-full rounded-full bg-orange-500" />
                   </div>
                 )}
               </button>
             ))}
           </div>
-          
-          <Button 
-            variant="outline" 
-            className="ml-4 py-6 px-6 flex items-center gap-2 border-gray-300"
+
+          <Button
+            variant="outline"
+            className="ml-4 flex items-center gap-2 border-gray-300 px-6 py-6"
           >
-            <Settings2 className="w-4 h-4"/>
+            <Settings2 className="h-4 w-4" />
             <span>Filter</span>
           </Button>
         </div>

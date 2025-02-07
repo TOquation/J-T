@@ -10,35 +10,28 @@ import {
   List,
   Calendar,
   MessageSquare,
-  Users,
-  DollarSign,
   AnchorIcon,
   UserIcon,
   HouseIcon,
 } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { cn } from '@/lib/utils';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
-import { Button } from '@/components/ui/button';
+import NavItem from '@/components/sideBars/navItem';
 
-const MainLayout = ({ children }: { children: React.ReactNode }) => {
+const GuestDashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const [collapsed, setCollapsed] = useState(false);
 
   const navItems = [
-    { name: 'Dashboard', icon: LayoutDashboard, count: null, active: true },
-    { name: 'Listing', icon: List, count: null },
-    { name: 'Reservations', icon: Calendar, count: 3 },
-    { name: 'Messages', icon: MessageSquare, count: 3 },
-    { name: 'Co-Host', icon: Users, count: null },
-    { name: 'Earnings', icon: DollarSign, count: null },
+    { name: 'V Home', icon: LayoutDashboard, path: '/guest/home', count: null },
+    { name: 'Wishlist', icon: List, path: '/guest/wishlist', count: null },
+    { name: 'My Bookings', icon: Calendar, path: '/guest/bookings', count: 3 },
+    {
+      name: 'Messages',
+      icon: MessageSquare,
+      path: '/guest/messages',
+      count: 3,
+    },
   ];
-
-  <Button onClick={() => setCollapsed(!collapsed)}>Open</Button>;
 
   return (
     <div className="min-h-screen">
@@ -51,16 +44,16 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
           </div>
 
           <div className="flex items-center gap-4 rounded-2xl bg-white p-1">
-            <div className="flex items-center gap-2 rounded-xl px-3 py-2">
-              <UserIcon size={15} />
-              <span className="text-sm">Guest</span>
+            <div className="flex items-center gap-2 rounded-xl bg-orange-500 px-3 py-2">
+              <UserIcon color="white" size={15} />
+              <span className="text-sm text-white">Guest</span>
               <span className="flex h-5 w-5 items-center justify-center rounded-full bg-orange-500 text-xs text-white">
                 3
               </span>
             </div>
-            <div className="flex items-center gap-2 rounded-xl bg-orange-500 px-3 py-2 text-white">
+            <div className="flex items-center gap-2 rounded-xl px-3 py-2 text-white">
               <HouseIcon size={15} />
-              <span className="text-sm">Host</span>
+              <span className="text-sm text-primary">Host</span>
               <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white text-xs text-orange-500">
                 3
               </span>
@@ -82,7 +75,6 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
             collapsed ? 'w-20' : 'w-64'
           )}
         >
-          {/* <Button onClick={() => setCollapsed(!collapsed)}>Open</Button>; */}
           <div className={`${collapsed ? 'p-3' : 'p-4'} flex-1`}>
             <div
               className={cn(
@@ -107,52 +99,25 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
               )}
             </div>
 
-            <TooltipProvider>
-              <nav className="space-y-2">
-                {navItems.map((item) => (
-                  <Tooltip key={item.name} delayDuration={0}>
-                    <TooltipTrigger asChild>
-                      <div
-                        className={cn(
-                          'relative flex cursor-pointer items-center gap-3 rounded-lg p-3',
-                          item.active
-                            ? 'bg-primary/15 text-orange-500'
-                            : 'hover:bg-gray-50',
-                          collapsed ? 'justify-center px-2' : 'px-3'
-                        )}
-                      >
-                        <item.icon
-                          className={cn(
-                            'transition-all duration-300',
-                            collapsed ? 'h-5 w-5' : 'h-5 w-5'
-                          )}
-                        />
-                        {!collapsed && (
-                          <div className="flex flex-1 items-center justify-between">
-                            <span>{item.name}</span>
-                            {item.count && (
-                              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-orange-500 text-xs text-white">
-                                {item.count}
-                              </span>
-                            )}
-                          </div>
-                        )}
-                        {collapsed && item.count && (
-                          <span className="absolute right-0 top-0 flex h-4 w-4 items-center justify-center rounded-full bg-orange-500 text-xs text-white">
-                            {item.count}
-                          </span>
-                        )}
-                      </div>
-                    </TooltipTrigger>
-                    {collapsed && (
-                      <TooltipContent side="right">
-                        <p>{item.name}</p>
-                      </TooltipContent>
-                    )}
-                  </Tooltip>
+            <nav className="space-y-2">
+              <ul className="flex flex-col">
+                {navItems.map((item, index) => (
+                  <li
+                    key={index}
+                    className={`flex items-center ${
+                      collapsed ? 'justify-center px-2' : 'px-3'
+                    }`}
+                  >
+                    <NavItem
+                      icon={item.icon}
+                      name={item.name}
+                      path={item.path}
+                      count={item.count}
+                    />
+                  </li>
                 ))}
-              </nav>
-            </TooltipProvider>
+              </ul>
+            </nav>
 
             {!collapsed ? (
               <div className="mt-6 rounded-xl bg-gray-900 p-4 text-white">
@@ -171,6 +136,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
                 </button>
               </div>
             )}
+
             <button
               onClick={() => setCollapsed(!collapsed)}
               className="flex justify-center border-t p-4 hover:bg-gray-100"
@@ -182,13 +148,12 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
               )}
             </button>
           </div>
-          {/* Collapse Toggle Button */}
         </aside>
 
         {/* Main Content */}
         <main
           className={cn(
-            'flex-1 p-6 transition-all duration-300',
+            'flex-1 transition-all duration-300',
             collapsed ? 'ml-20' : 'ml-64'
           )}
         >
@@ -199,4 +164,4 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default MainLayout;
+export default GuestDashboardLayout;
