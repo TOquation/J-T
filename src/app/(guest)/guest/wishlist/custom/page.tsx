@@ -5,7 +5,8 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ArrowLeftRightIcon, ArrowRight, ArrowRightToLine, ArrowUpRightIcon } from 'lucide-react';
+import { Carattere } from 'next/font/google';
 
 interface WishlistFolder {
   id: string;
@@ -56,7 +57,7 @@ const WishlistPage = () => {
           className="mb-3 flex cursor-pointer items-center text-black"
         >
           <ArrowLeft size={20} />
-          <span className="ml-2 text-lg">Your Category</span>
+          <span className="ml-2 text-lg font-medium text-[16px] text-[#221E1F]">Your Category</span>
         </Link>
         <Button variant="outline">Create New List</Button>
       </div>
@@ -64,18 +65,24 @@ const WishlistPage = () => {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {folders.map((folder) => (
           <Link href={`/guest/wishlist/custom/${folder.id}`} key={folder.id}>
-            <Card className="transition-shadow hover:shadow-lg">
-              <div className="relative h-48 w-full">
+            <Card className="flex transition-shadow hover:shadow-lg p-1 relative">
+              <div className="relative w-3/12">
                 <Image
                   src={folder.imageUrl}
                   alt={folder.name}
                   fill
-                  className="rounded-t-lg object-cover"
+                  className="rounded-lg object-cover"
                 />
               </div>
+              <div className='flex items-center justify-between'>
               <div className="p-4">
-                <h2 className="text-lg font-semibold">{folder.name}</h2>
+                <h2 className="text-lg font-medium text-[18px]">{folder.name}</h2>
                 <p className="text-gray-600">{folder.itemCount} items</p>
+              </div>
+              <div className='absolute right-3'>
+                <ArrowRight size={24} />
+              </div>
+
               </div>
             </Card>
           </Link>
