@@ -78,7 +78,7 @@ const PropertyDetailPage = ({ id }: { id: string }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  let photosSectionClassName = 'scroll-mt-32 pt-28';
+  let photosSectionClassName = 'scroll-mt-32 pt-[118px]';
 
   // Common section wrapper style
   const sectionClassName = 'scroll-mt-32 pt-16';
