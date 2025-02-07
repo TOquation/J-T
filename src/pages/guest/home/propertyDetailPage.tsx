@@ -78,12 +78,7 @@ const PropertyDetailPage = ({ id }: { id: string }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  let photosSectionClassName;
-  useEffect(() => {
-    photosSectionClassName = 'scroll-mt-32 pt-1';
-  }, []);
-
-  photosSectionClassName = 'scroll-mt-32 pt-1';
+  let photosSectionClassName = 'scroll-mt-32 pt-28';
 
   // Common section wrapper style
   const sectionClassName = 'scroll-mt-32 pt-16';
@@ -137,7 +132,7 @@ const PropertyDetailPage = ({ id }: { id: string }) => {
         </div>
       </div>
 
-      <div className="mt-32 w-full px-10">
+      <div className="w-full px-10">
         <div className="grid grid-cols-7 gap-3">
           <main className="col-span-5">
             {/* Photos Section */}
