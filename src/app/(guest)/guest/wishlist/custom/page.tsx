@@ -32,14 +32,14 @@ const WishlistPage = () => {
       itemCount: 3,
     },
     {
-      id: '2',
+      id: '3',
       name: 'Weekend Getaways',
       imageUrl:
         'https://s3-alpha-sig.figma.com/img/3024/ac8f/66c627267c6190e21c580af64bd41775?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=NSDHO3lffXqVM-9aASMrPdK5Vlky7VnbIkHh92Fcn7KHsLnNNhk5d02Pa-bQoeHtcjquxfVx1VOxU4xYVtPh14UHjWMZdzgjLZ83mvgrUtOJbK5WxYNKMqNH48pMOATogzJMhYHvx0plhDZ1JhN2BstuX1ZzZHeoH-TsWXrVG2JzorL9~H4IiC0WXl27GObCCCfzGUJkfioFLpNxu0gQSm6X-~o8ROfklV3AbBJlZQm-lxHc1egb5N3hVbPZdR2kIbPjGRc-9wbiCMoi9xIbpER7EgBQYPY5amcH43dHc-0f7dDS-1kJB6P9~xbwaOzHvrovhBsb3izf0OkxIujKdw__',
       itemCount: 3,
     },
     {
-      id: '2',
+      id: '4',
       name: 'Weekend Getaways',
       imageUrl:
         'https://s3-alpha-sig.figma.com/img/3024/ac8f/66c627267c6190e21c580af64bd41775?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=NSDHO3lffXqVM-9aASMrPdK5Vlky7VnbIkHh92Fcn7KHsLnNNhk5d02Pa-bQoeHtcjquxfVx1VOxU4xYVtPh14UHjWMZdzgjLZ83mvgrUtOJbK5WxYNKMqNH48pMOATogzJMhYHvx0plhDZ1JhN2BstuX1ZzZHeoH-TsWXrVG2JzorL9~H4IiC0WXl27GObCCCfzGUJkfioFLpNxu0gQSm6X-~o8ROfklV3AbBJlZQm-lxHc1egb5N3hVbPZdR2kIbPjGRc-9wbiCMoi9xIbpER7EgBQYPY5amcH43dHc-0f7dDS-1kJB6P9~xbwaOzHvrovhBsb3izf0OkxIujKdw__',

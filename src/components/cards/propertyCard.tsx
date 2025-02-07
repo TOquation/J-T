@@ -19,7 +19,7 @@ const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
   const router = useRouter();
 
   return (
-    <Card className="relative overflow-hidden rounded-3xl border-none shadow-none duration-500 animate-in hover:shadow-lg">
+    <Card className="relative overflow-hidden rounded-3xl border-none shadow-none duration-500 animate-in hover:shadow-lg cursor-pointer">
       {/* Top Badge & Favorite Button */}
       <div className="absolute left-0 right-0 top-0 z-10 flex justify-between p-4">
         <span className="rounded-xl bg-white/70 px-3 py-2 text-sm font-medium text-customOrange">
@@ -27,9 +27,10 @@ const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
         </span>
         <button className="rounded-full p-2">
           <Heart
-            className="h-5 w-5"
-            fill={isLiked ? '#222222' : 'none'}
+            className="h-6 w-6 text-white"
+            fill={isLiked ? '#808080' : '#FF3333'}
             strokeWidth={2}
+            stroke={isLiked ? '' : 'white'}
             onClick={() => setIsLiked(!isLiked)}
           />
         </button>
@@ -92,12 +93,12 @@ const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
         </div>
 
         {/* Property Details */}
-        <div className="p-4">
+        <div className="p-4 group">
           <div className="mb-1 flex items-start justify-between">
             <div>
               <h2
                 onClick={() => router.push(`/guest/home/${property.id}`)}
-                className="cursor-pointer text-[16px] font-semibold"
+                className="cursor-pointer text-[16px] font-semibold group-hover:text-customOrange transition-colors"
               >
                 {property.title}
               </h2>

@@ -12,27 +12,27 @@ const page = () => {
         href={'/guest/wishlist/custom'}
         className="mb-3 flex cursor-pointer items-center text-black"
       >
-        <ArrowLeft size={20} />
-        <span className="ml-2 text-lg">Your Category</span>
+        <ArrowLeft size={24} />
+        <span className="ml-2 text-[16px] font-medium text-[#221E1F]">Your Category</span>
       </Link>
       <div className="mb-5 flex items-center justify-between">
         <div>
-          <h2>Lagos vacation</h2>
-          <h3>5 Saved</h3>
+          <h2 className='text-[20px] font-semibold text-[#221E1F]'>Lagos vacation</h2>
+          <h3 className='text-[14px] font-[450] text-[#666666]'>5 Saved</h3>
         </div>
         <div className="flex items-center gap-3">
           <Button
-            className="flex items-center gap-2 rounded-2xl"
+            className="flex items-center py-[6px] px-[13px] rounded-2xl text-[#666666] text-[14px] font-normal"
             variant="outline"
           >
-            <Share2Icon />
+            <Share2Icon size={24}/>
             Share
           </Button>
           <Button
-            className="flex items-center gap-2 rounded-2xl"
+            className="flex items-center text-[#666666] rounded-2xl py-[6px] px-[13px]" 
             variant="outline"
           >
-            <Share2Icon />
+            <Share2Icon size={24}/>
           </Button>
         </div>
       </div>
