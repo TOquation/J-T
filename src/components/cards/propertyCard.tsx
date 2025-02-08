@@ -19,12 +19,12 @@ import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
 const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isLiked, setIsLiked] = useState(false);
-  const [api, setApi] = useState<CarouselApi | null>(null);
-  const [isHovered, setIsHovered] = useState(false);
+const [currentSlide, setCurrentSlide] = useState(0);
+const [isLiked, setIsLiked] = useState(false);
+const [api, setApi] = useState<CarouselApi | null>(null);
+const [isHovered, setIsHovered] = useState(false);
 
-  const router = useRouter();
+const router = useRouter();
 
   useEffect(() => {
     if (api) {
@@ -109,8 +109,8 @@ const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
                   </div>
                 </CarouselItem>
               ))}
-            </CarouselContent>
-          </Carousel>
+          </CarouselContent>
+        </Carousel>
 
           {/* Agency Logo */}
           <div className="absolute bottom-4 left-4 z-10 flex items-center gap-2">
