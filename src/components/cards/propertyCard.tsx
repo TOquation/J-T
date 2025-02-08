@@ -4,19 +4,46 @@ import { Property } from '@/app/types/common';
 import { Card, CardContent } from '@/components/ui/card';
 import {
   Carousel,
+  CarouselApi,
   CarouselContent,
   CarouselItem,
 } from '@/components/ui/carousel';
-import { Star, Heart } from 'lucide-react';
+
+import { 
+  Star,
+  Heart,
+  ChevronLeft, 
+  ChevronRight } from 'lucide-react';
+
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
-  const [api, setApi] = useState<any>(null);
+  const [api, setApi] = useState<CarouselApi | null>(null);
+  const [isHovered, setIsHovered] = useState(false);
 
   const router = useRouter();
+
+  useEffect(() => {
+    if (api) {
+      api.on('select', () => {
+        setCurrentSlide(api.selectedScrollSnap());
+      });
+    }
+  }, [api]);
+
+  const handlePrevSlide = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (api) api.scrollPrev();
+  };
+
+  const handleNextSlide = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (api) api.scrollNext();
+  };
+
 
   return (
     <Card className="relative overflow-hidden rounded-3xl border-none shadow-none duration-500 animate-in hover:shadow-lg cursor-pointer">
@@ -38,18 +65,39 @@ const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
 
       {/* Carousel */}
       <CardContent className="p-0">
-        <div className="relative">
-          <Carousel
-            className="w-full"
-            opts={{ loop: true }}
-            setApi={(carouselApi) => {
-              setApi(carouselApi);
-              carouselApi?.on('select', () =>
-                setCurrentSlide(carouselApi.selectedScrollSnap())
-              );
-            }}
-          >
-            <CarouselContent>
+        <div className="relative"
+             onMouseEnter={()=> setIsHovered(true)}
+             onMouseLeave={()=> setIsHovered(false)}
+      >
+
+     {/* Previous Button - Only show on hover */}
+
+      {isHovered && (
+            <button 
+              onClick={handlePrevSlide}              className="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/70 p-2 shadow-md hover:bg-white transition-colors"
+            >
+              <ChevronLeft className="h-5 w-5 text-gray-700" />
+            </button>
+      )}
+
+     {/* Next Button - Only show on hover */}
+
+      {isHovered && (
+            <button 
+              onClick={handleNextSlide}
+              className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/70 p-2 shadow-md hover:bg-white transition-colors"
+            >
+              <ChevronRight className="h-5 w-5 text-gray-700" />
+            </button>
+      )}
+
+
+        <Carousel
+          className="w-full"
+          opts={{ loop: true }}
+          setApi={setApi}
+        >
+          <CarouselContent>
               {property.images.map((image, index) => (
                 <CarouselItem key={index}>
                   <div className="aspect-[4/3] w-full">
