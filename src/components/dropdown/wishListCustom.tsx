@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { StickyNote, MoreHorizontal, Trash2 } from 'lucide-react';
+import { StickyNote, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import MoreOutlined from '../icons/moreOutlined';
 
