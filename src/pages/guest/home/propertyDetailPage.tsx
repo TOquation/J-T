@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import DualCalendar from '@/components/calenders/dualCalender';
-import ImageGallery from '@/components/imageGallery';
+import ImageGallery from '@/components/image_gallery/imageGallery';
 import ListingDetailsSection from '@/sections/propertyDetail/listingDetailsSection';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
