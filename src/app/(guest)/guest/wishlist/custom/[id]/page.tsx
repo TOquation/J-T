@@ -4,7 +4,7 @@ import PropertyCard from '@/components/cards/propertyCard';
 import { Button } from '@/components/ui/button';
 import { properties } from '@/data/properties';
 import { ArrowLeft, Share2Icon } from 'lucide-react';
-import WishListCustom from '@/components/dropdown/wishListCustom';
+import WishListCustom from '@/components/dropdown/wishListOptions';
 
 const page = () => {
   return (
