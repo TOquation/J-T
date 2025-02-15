@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,11 +13,9 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@/components/ui/dialog';
 
 import MoreOutlined from '../icons/moreOutlined';
@@ -26,20 +25,26 @@ import { Trash2 } from 'lucide-react';
 import VidBoard from '../icons/vidboard';
 
 const WishListOptions = () => {
-  const [dialogOpen, setDialogOpen] = useState(false);
+  const [renameDialogOpen, setRenameDialogOpen] = useState(false);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const handleDialogOpen = () => {
+  const handleRenameDialogOpen = () => {
     setDropdownOpen(false);
-    setDialogOpen(true);
+    setRenameDialogOpen(true);
   };
 
-  const handleDialogClose = () => {
-    setDialogOpen(false);
+  const handleRenameDialogClose = () => {
+    setRenameDialogOpen(false);
+  };
 
-    setTimeout(() => {
-      setDropdownOpen(false);
-    }, 10);
+  const handleDeleteDialogOpen = () => {
+    setDropdownOpen(false);
+    setDeleteDialogOpen(true);
+  };
+
+  const handleDeleteDialogClose = () => {
+    setDeleteDialogOpen(false);
   };
 
   return (
@@ -56,7 +61,7 @@ const WishListOptions = () => {
         >
           <DropdownMenuItem
             className="flex cursor-pointer items-center gap-2 focus:bg-transparent"
-            onClick={handleDialogOpen}
+            onClick={handleRenameDialogOpen}
           >
             <div className="rounded-lg bg-gray-100 p-2">
               <VidBoard />
@@ -66,7 +71,10 @@ const WishListOptions = () => {
             </p>
           </DropdownMenuItem>
 
-          <DropdownMenuItem className="focus:bg-transparen flex cursor-pointer items-center gap-2">
+          <DropdownMenuItem
+            className="flex cursor-pointer items-center gap-2 focus:bg-transparent"
+            onClick={handleDeleteDialogOpen}
+          >
             <div className="rounded-lg bg-gray-100 p-2">
               <Trash2 color="#FF3333" />
             </div>
@@ -77,41 +85,67 @@ const WishListOptions = () => {
         </DropdownMenuContent>
       </DropdownMenu>
 
-      <Dialog open={dialogOpen} onOpenChange={handleDialogClose}>
+      {/* Rename Dialog */}
+      <Dialog open={renameDialogOpen} onOpenChange={handleRenameDialogClose}>
         <DialogContent className="h-64 max-w-md !rounded-[30px] pt-14 [&>button]:hidden">
           <div className="mx-auto flex w-[305px] flex-col space-y-1">
-            <DialogHeader className="">
+            <DialogHeader>
               <DialogTitle className="text-sm text-gray-400">
                 Rename Category
               </DialogTitle>
             </DialogHeader>
-
-            <div className="">
-              <Input className='border-orange-500 shadow-none' defaultValue="Lagos visit" />
-            </div>
-
+            <Input
+              className="border-orange-500 shadow-none"
+              defaultValue="Lagos visit"
+            />
             <p className="text-xs text-gray-400">8/100 character</p>
           </div>
-
           <DialogFooter>
-            <DialogFooter className="flex w-full items-center gap-2">
-              <DialogClose className="flex-1 focus:outline-none" asChild>
-                <Button
-                  className="w-full bg-transparent py-5 font-medium text-orange-500 ring-1 ring-orange-500 hover:text-white"
-                  type="button"
-                >
-                  Cancel
-                </Button>
-              </DialogClose>
-              <div className="flex-1">
-                <Button
-                  className="w-full bg-orange-600 py-5 font-medium hover:bg-orange-500 hover:text-white"
-                  type="submit"
-                >
-                  Save changes
-                </Button>
-              </div>
-            </DialogFooter>
+            <DialogClose asChild>
+              <Button className="w-full bg-transparent py-6 font-medium text-[#EF5E17] ring-1 ring-[#EF5E17] hover:bg-transparent">
+                Cancel
+              </Button>
+            </DialogClose>
+            <Button className="w-full bg-orange-600 py-6 font-medium hover:bg-orange-600">
+              Save changes
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      {/* Delete Confirmation Dialog */}
+      <Dialog open={deleteDialogOpen} onOpenChange={handleDeleteDialogClose}>
+        <DialogContent className="h-[462px] max-w-2xl !rounded-[30px] [&>button]:hidden pb-14">
+          <DialogHeader>
+            <DialogTitle></DialogTitle>
+          </DialogHeader>
+          <div className="mx-auto flex w-full max-w-[400px] flex-col items-center justify-center gap-8">
+            <div className="h-36 w-36">
+              <Image
+                src="/images/cautionImg.svg"
+                alt="Delete Warning"
+                width={500}
+                height={500}
+              />
+            </div>
+
+            <h3 className="text-center text-2xl font-bold text-[#EF5E17]">
+              Delete Category?
+            </h3>
+            <p className="text-center text-base font-medium text-[#221E1F]">
+              Are you sure you want to delete this category? deleting it will
+              loose all saved listing in this category.
+            </p>
+          </div>
+          <DialogFooter className="mx-auto w-full max-w-96">
+            <DialogClose asChild>
+              <Button className="w-full bg-transparent py-6 font-medium text-[#EF5E17] ring-1 ring-[#EF5E17] hover:bg-transparent">
+                No, Cancel
+              </Button>
+            </DialogClose>
+            <Button className="w-full bg-red-600 py-6 font-medium text-white hover:bg-red-600">
+              Yes, Delete
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
