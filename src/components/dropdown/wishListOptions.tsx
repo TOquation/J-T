@@ -78,7 +78,7 @@ const WishListOptions = () => {
       </DropdownMenu>
 
       <Dialog open={dialogOpen} onOpenChange={handleDialogClose}>
-        <DialogContent className="h-64 max-w-md pt-14 [&>button]:hidden">
+        <DialogContent className="h-64 max-w-md !rounded-[30px] pt-14 [&>button]:hidden">
           <div className="mx-auto flex w-[305px] flex-col space-y-1">
             <DialogHeader className="">
               <DialogTitle className="text-sm text-gray-400">
@@ -87,7 +87,7 @@ const WishListOptions = () => {
             </DialogHeader>
 
             <div className="">
-              <Input defaultValue="Lagos visit" />
+              <Input className='border-orange-500 shadow-none' defaultValue="Lagos visit" />
             </div>
 
             <p className="text-xs text-gray-400">8/100 character</p>
@@ -95,10 +95,10 @@ const WishListOptions = () => {
 
           <DialogFooter>
             <DialogFooter className="flex w-full items-center gap-2">
-              <DialogClose className="flex-1 focus:outline-none">
+              <DialogClose className="flex-1 focus:outline-none" asChild>
                 <Button
-                  className="w-full bg-transparent py-5 font-medium text-orange-500 ring-2 ring-orange-500 hover:text-white"
-                  type="submit"
+                  className="w-full bg-transparent py-5 font-medium text-orange-500 ring-1 ring-orange-500 hover:text-white"
+                  type="button"
                 >
                   Cancel
                 </Button>
