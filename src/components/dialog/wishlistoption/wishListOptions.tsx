@@ -18,11 +18,11 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 
-import MoreOutlined from '../icons/moreOutlined';
-import { Button } from '../ui/button';
-import { Input } from '../ui/input';
+import MoreOutlined from '../../icons/moreOutlined';
+import { Button } from '../../ui/button';
+import { Input } from '../../ui/input';
 import { Trash2 } from 'lucide-react';
-import VidBoard from '../icons/vidboard';
+import VidBoard from '../../icons/vidboard';
 
 const WishListOptions = () => {
   const [renameDialogOpen, setRenameDialogOpen] = useState(false);
@@ -54,7 +54,7 @@ const WishListOptions = () => {
           <Button
             variant="outline"
             size="icon"
-            className="flex w-fit items-center rounded-2xl px-[15px] py-[6px] hover:text-orange-500 hover:bg-transparent hover:border-orange-500"
+            className="flex w-fit items-center rounded-2xl px-[15px] py-[6px] hover:border-orange-500 hover:bg-transparent hover:text-orange-500"
           >
             <MoreOutlined />
           </Button>

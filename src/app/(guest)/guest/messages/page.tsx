@@ -1,4 +1,4 @@
-import EmailIcon from '@/components/icons/emailIcon';
+import EmailIcon from '@/components/icons/EmailIcon';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import React from 'react';
