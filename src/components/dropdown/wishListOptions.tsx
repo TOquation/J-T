@@ -53,9 +53,8 @@ const WishListOptions = () => {
         <DropdownMenuTrigger asChild>
           <Button
             variant="outline"
-            color="#666666"
             size="icon"
-            className="flex w-fit items-center rounded-2xl px-[15px] py-[6px] text-[14px] font-normal"
+            className="flex w-fit items-center rounded-2xl px-[15px] py-[6px] hover:text-orange-500 hover:bg-transparent hover:border-orange-500"
           >
             <MoreOutlined />
           </Button>

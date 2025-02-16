@@ -27,9 +27,8 @@ const page = () => {
         </div>
         <div className="flex items-center gap-3">
           <Button
-            className="flex items-center rounded-2xl px-[13px] py-[6px] text-[14px] font-normal text-[#666666]"
+            className="flex items-center rounded-2xl px-[13px] py-[6px] text-[14px] font-normal text-[#666666] hover:text-orange-500 hover:bg-transparent hover:border-orange-500"
             variant="outline"
-            color="#666666"
           >
             <Share2Icon size={24} />
             Share
