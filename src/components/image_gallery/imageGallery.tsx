@@ -3,7 +3,6 @@
 import React from 'react';
 import Image from 'next/image';
 import { Gallery, Item } from 'react-photoswipe-gallery';
-import { Separator } from '@/components/ui/separator';
 import 'photoswipe/dist/photoswipe.css';
 
 const ImageGallery = ({ images = [] }) => {
@@ -15,7 +14,7 @@ const ImageGallery = ({ images = [] }) => {
       height: 800,
     },
     {
-      src: '/images/grid_1_img.png',
+      src: '/images/hospitality1',
       alt: 'Thumbnail 1',
       width: 800,
       height: 600,

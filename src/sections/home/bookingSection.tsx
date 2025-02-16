@@ -11,7 +11,7 @@ const BookingSection = () => {
           {/* Left Image */}
           <div className="relative w-1/2 overflow-visible">
             <img
-              src="https://s3-alpha-sig.figma.com/img/69f7/4fc2/7d5d78e1358fa0f01a5a5821cd90bad7?Expires=1739145600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=qf9gpdJnGQehbhJ7m5Tg3kXFuU4UM8zjn7XDZ5MTB5WzAFgwZJb43yt-nihly9SHGPTinErvrUsmgjIsdhNM1ww5t1H1XKv~VDLQRD~VN-tpPq0BFrEHs~wYie9JTstVdsRolzysiPgT8tOU7KNPsZ9AZLXkNGno2LfgGdHmYkHnMMuKFMivIoFpZOtv6u~9XMlq3lLD6~Xu2Y~jUhDCOFmUMgfLbAoNRKA4UYngObt9L4Z8tFEXWeI7G9sMHCNsz4zwnbYsPP9jyW3MCIS9EwsK~Z6RHNy9aZ7eaVW~bxQQdOPrpLv-tdDNEH25q3LMRXEufFc1zkiVQy1q~hevAg__"
+              src="/images/hospitality2.png"
               alt="Living Room"
               className="absolute top-[-180px] w-full object-cover"
             />
@@ -20,9 +20,9 @@ const BookingSection = () => {
           {/* Right Image */}
           <div className="relative w-1/2 overflow-visible">
             <img
-              src="https://s3-alpha-sig.figma.com/img/c633/8c25/04bf508bace40b560b5b844113958136?Expires=1739145600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=C~k1JEPp~NKqGwQePJ733f21KiDCkHehUkMk-sZbuuK29IWel33sT1RX4on87FwE~Hf-bhH77I8Hoft10XsH27EtdUNHu1Gd7OtqMpZyYseDZ3Vem7-rnsMdu6X8-D~1CabYFUdOFRSabj1Qwj3Cev23xW39K3JTXHoTVz21nvt4UVz0VM8R7eQ24jr~h0Wvtn2f6N2ts6uUyVqU~cCXj07UVztTmaEJMQSwzDDS0DOQfySfBBKNiav2E4vmnGzQntQ8Ga3q6jED~-1tN6Zj7m3x5hjhDJDlTyolYBoTEH3pmrDmKzRdVhoC5zaWApJh5trY8p2eVrgbakEzP61S9w__"
+              src="/images/hospitality5.png"
               alt="Bedroom"
-              className="absolute top-[-250px] w-full object-cover"
+              className="absolute top-[-200px] w-full object-cover"
             />
           </div>
         </div>

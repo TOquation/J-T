@@ -9,22 +9,18 @@ import {
   CarouselItem,
 } from '@/components/ui/carousel';
 
-import { 
-  Star,
-  Heart,
-  ChevronLeft, 
-  ChevronRight } from 'lucide-react';
+import { Star, Heart, ChevronLeft, ChevronRight } from 'lucide-react';
 
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
 const PropertyCard: React.FC<{ property: Property }> = ({ property }) => {
-const [currentSlide, setCurrentSlide] = useState(0);
-const [isLiked, setIsLiked] = useState(false);
-const [api, setApi] = useState<CarouselApi | null>(null);
-const [isHovered, setIsHovered] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isLiked, setIsLiked] = useState(false);
+  const [api, setApi] = useState<CarouselApi | null>(null);
+  const [isHovered, setIsHovered] = useState(false);
 
-const router = useRouter();
+  const router = useRouter();
 
   useEffect(() => {
     if (api) {
@@ -44,11 +40,10 @@ const router = useRouter();
     if (api) api.scrollNext();
   };
 
-
   return (
-    <Card className="relative overflow-hidden rounded-3xl border-none shadow-none duration-500 animate-in hover:shadow-lg cursor-pointer">
+    <Card className="relative cursor-pointer overflow-hidden rounded-3xl border-none shadow-none duration-500 animate-in hover:shadow-lg">
       {/* Top Badge & Favorite Button */}
-      <div className="absolute left-0 right-0 top-0 z-10 flex justify-between items-center p-4">
+      <div className="absolute left-0 right-0 top-0 z-10 flex items-center justify-between p-4">
         <span className="rounded-xl bg-white/70 px-3 py-2 text-sm font-medium text-customOrange">
           Instant Book
         </span>
@@ -65,39 +60,35 @@ const router = useRouter();
 
       {/* Carousel */}
       <CardContent className="p-0">
-        <div className="relative"
-             onMouseEnter={()=> setIsHovered(true)}
-             onMouseLeave={()=> setIsHovered(false)}
-      >
+        <div
+          className="relative"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          {/* Previous Button - Only show on hover */}
 
-     {/* Previous Button - Only show on hover */}
-
-      {isHovered && (
-            <button 
-              onClick={handlePrevSlide}              className="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/70 p-2 shadow-md hover:bg-white transition-colors"
+          {isHovered && (
+            <button
+              onClick={handlePrevSlide}
+              className="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/70 p-2 shadow-md transition-colors hover:bg-white"
             >
               <ChevronLeft className="h-5 w-5 text-gray-700" />
             </button>
-      )}
+          )}
 
-     {/* Next Button - Only show on hover */}
+          {/* Next Button - Only show on hover */}
 
-      {isHovered && (
-            <button 
+          {isHovered && (
+            <button
               onClick={handleNextSlide}
-              className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/70 p-2 shadow-md hover:bg-white transition-colors"
+              className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-white/70 p-2 shadow-md transition-colors hover:bg-white"
             >
               <ChevronRight className="h-5 w-5 text-gray-700" />
             </button>
-      )}
+          )}
 
-
-        <Carousel
-          className="w-full"
-          opts={{ loop: true }}
-          setApi={setApi}
-        >
-          <CarouselContent>
+          <Carousel className="w-full" opts={{ loop: true }} setApi={setApi}>
+            <CarouselContent>
               {property.images.map((image, index) => (
                 <CarouselItem key={index}>
                   <div className="aspect-[4/3] w-full">
@@ -109,8 +100,8 @@ const router = useRouter();
                   </div>
                 </CarouselItem>
               ))}
-          </CarouselContent>
-        </Carousel>
+            </CarouselContent>
+          </Carousel>
 
           {/* Agency Logo */}
           <div className="absolute bottom-4 left-4 z-10 flex items-center gap-2">
@@ -141,12 +132,12 @@ const router = useRouter();
         </div>
 
         {/* Property Details */}
-        <div className="p-4 group">
+        <div className="group p-4">
           <div className="mb-1 flex items-start justify-between">
             <div>
               <h2
                 onClick={() => router.push(`/guest/home/${property.id}`)}
-                className="cursor-pointer text-[16px] font-semibold group-hover:text-customOrange transition-colors"
+                className="cursor-pointer text-[16px] font-semibold transition-colors group-hover:text-customOrange"
               >
                 {property.title}
               </h2>
