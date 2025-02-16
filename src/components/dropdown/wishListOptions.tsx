@@ -51,7 +51,12 @@ const WishListOptions = () => {
     <div>
       <DropdownMenu open={dropdownOpen} onOpenChange={setDropdownOpen}>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="icon">
+          <Button
+            variant="outline"
+            color="#666666"
+            size="icon"
+            className="flex w-fit items-center rounded-2xl px-[15px] py-[6px] text-[14px] font-normal"
+          >
             <MoreOutlined />
           </Button>
         </DropdownMenuTrigger>
@@ -115,11 +120,11 @@ const WishListOptions = () => {
 
       {/* Delete Confirmation Dialog */}
       <Dialog open={deleteDialogOpen} onOpenChange={handleDeleteDialogClose}>
-        <DialogContent className="h-[462px] max-w-2xl !rounded-[30px] [&>button]:hidden pb-14">
+        <DialogContent className="h-[462px] max-w-2xl !rounded-[30px] pb-14 [&>button]:hidden">
           <DialogHeader>
             <DialogTitle></DialogTitle>
           </DialogHeader>
-          <div className="mx-auto flex w-full max-w-[400px] flex-col items-center justify-center gap-8">
+          <div className="mx-auto flex w-full max-w-[400px] flex-col items-center justify-center gap-10">
             <div className="h-36 w-36">
               <Image
                 src="/images/cautionImg.svg"
@@ -129,24 +134,27 @@ const WishListOptions = () => {
               />
             </div>
 
-            <h3 className="text-center text-2xl font-bold text-[#EF5E17]">
-              Delete Category?
-            </h3>
-            <p className="text-center text-base font-medium text-[#221E1F]">
-              Are you sure you want to delete this category? deleting it will
-              loose all saved listing in this category.
-            </p>
-          </div>
-          <DialogFooter className="mx-auto w-full max-w-96">
-            <DialogClose asChild>
-              <Button className="w-full bg-transparent py-6 font-medium text-[#EF5E17] ring-1 ring-[#EF5E17] hover:bg-transparent">
-                No, Cancel
+            <div className="space-y-2">
+              <h3 className="text-center text-2xl font-bold text-[#EF5E17]">
+                Delete Category?
+              </h3>
+              <p className="text-center text-base font-medium text-[#221E1F]">
+                Are you sure you want to delete this category? deleting it will
+                loose all saved listing in this category.
+              </p>
+            </div>
+
+            <DialogFooter className="mx-auto flex w-full max-w-96 gap-5">
+              <DialogClose asChild>
+                <Button className="w-full bg-transparent py-6 font-medium text-[#EF5E17] ring-1 ring-[#EF5E17] hover:bg-transparent">
+                  No, Cancel
+                </Button>
+              </DialogClose>
+              <Button className="w-full bg-red-600 py-6 font-medium text-white hover:bg-red-600">
+                Yes, Delete
               </Button>
-            </DialogClose>
-            <Button className="w-full bg-red-600 py-6 font-medium text-white hover:bg-red-600">
-              Yes, Delete
-            </Button>
-          </DialogFooter>
+            </DialogFooter>
+          </div>
         </DialogContent>
       </Dialog>
     </div>

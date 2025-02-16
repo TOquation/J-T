@@ -29,6 +29,7 @@ const page = () => {
           <Button
             className="flex items-center rounded-2xl px-[13px] py-[6px] text-[14px] font-normal text-[#666666]"
             variant="outline"
+            color="#666666"
           >
             <Share2Icon size={24} />
             Share
