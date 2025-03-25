@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Bell,
   Settings,
@@ -10,11 +10,9 @@ import {
   List,
   Calendar,
   MessageSquare,
-  Anchor,
-  User,
-  Home,
-  Menu,
-  X,
+  AnchorIcon,
+  UserIcon,
+  HouseIcon,
 } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { cn } from '@/lib/utils';
@@ -23,26 +21,20 @@ import NavItem from '@/components/sideBars/navItem';
 const GuestDashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Check screen size and set mobile view
-  useEffect(() => {
-    const checkScreenSize = () => {
+  React.useEffect(() => {
+    const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
-      // Auto-collapse sidebar on mobile
-      if (window.innerWidth < 768) {
-        setCollapsed(true);
-      }
     };
 
     // Check initial screen size
-    checkScreenSize();
+    checkMobile();
 
-    // Add event listener for resize
-    window.addEventListener('resize', checkScreenSize);
+    // Add event listener to check screen size on resize
+    window.addEventListener('resize', checkMobile);
 
     // Cleanup event listener
-    return () => window.removeEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   const navItems = [
@@ -57,11 +49,6 @@ const GuestDashboardLayout = ({ children }: { children: React.ReactNode }) => {
     },
   ];
 
-  // Mobile menu toggle
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
-
   return (
     <div className="min-h-screen">
       {/* Top Navigation */}
@@ -72,34 +59,23 @@ const GuestDashboardLayout = ({ children }: { children: React.ReactNode }) => {
             <span className="font-semibold text-white">HOSPITALITY</span>
           </div>
 
-          {/* Mobile Menu Toggle for smaller screens */}
-          <div className="md:hidden">
-            <button 
-              onClick={toggleMobileMenu} 
-              className="text-white focus:outline-none"
-            >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
-
-          {/* Desktop Navigation Items */}
-          <div className="hidden md:flex items-center gap-4 rounded-2xl bg-white p-1">
+          <div className="flex items-center gap-4 rounded-2xl bg-white p-1">
             <div className="flex items-center gap-2 rounded-xl bg-orange-500 px-3 py-2">
-              <User color="white" size={15} />
+              <UserIcon color="white" size={15} />
               <span className="text-sm text-white">Guest</span>
               <span className="flex h-5 w-5 items-center justify-center rounded-full bg-orange-500 text-xs text-white">
                 3
               </span>
             </div>
             <div className="flex items-center gap-2 rounded-xl px-3 py-2 text-white">
-              <Home size={15} />
+              <HouseIcon size={15} />
               <span className="text-sm text-primary">Host</span>
               <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white text-xs text-orange-500">
                 3
               </span>
             </div>
           </div>
-          <div className="hidden md:flex gap-3">
+          <div className="flex gap-3">
             <Bell className="h-5 w-5 text-white" />
             <Settings className="h-5 w-5 text-white" />
           </div>
@@ -107,44 +83,36 @@ const GuestDashboardLayout = ({ children }: { children: React.ReactNode }) => {
       </nav>
 
       {/* Sidebar and Main Content */}
-      <div className="flex h-screen pt-16">
-        {/* Mobile Overlay Menu */}
-        {mobileMenuOpen && (
-          <div 
-            className="fixed inset-0 z-40 bg-black/50 md:hidden" 
-            onClick={toggleMobileMenu}
-          />
-        )}
-
+      <div className="flex h-screen px-4 pt-20">
         {/* Sidebar */}
         <aside
           className={cn(
-            'fixed z-50 top-16 bottom-0 flex h-[calc(100vh-4rem)] flex-col rounded-2xl bg-[#F99C1C1A] transition-all duration-300',
+            'fixed flex h-full flex-col rounded-2xl bg-[#F99C1C1A] transition-all duration-300',
+            // Responsive width
             isMobile 
-              ? (mobileMenuOpen 
-                  ? 'w-64 translate-x-0' 
-                  : 'w-20 -translate-x-full')
-              : (collapsed ? 'w-20' : 'w-64'),
-            'md:static md:translate-x-0'
+              ? 'w-20' 
+              : collapsed 
+                ? 'w-20' 
+                : 'w-64'
           )}
         >
-          <div className={`${collapsed ? 'p-3' : 'p-4'} flex-1`}>
+          <div className={`${(isMobile || collapsed) ? 'p-3' : 'p-4'} flex-1`}>
             <div
               className={cn(
                 'mb-6 flex items-center gap-3',
-                collapsed && 'justify-center'
+                (isMobile || collapsed) && 'justify-center'
               )}
             >
               <Avatar
                 className={cn(
                   'transition-all duration-300',
-                  collapsed && 'h-10 w-10'
+                  (isMobile || collapsed) && 'h-10 w-10'
                 )}
               >
                 <AvatarImage src="https://github.com/shadcn.png" />
                 <AvatarFallback>AA</AvatarFallback>
               </Avatar>
-              {!collapsed && (
+              {!isMobile && !collapsed && (
                 <div>
                   <h3 className="font-medium">Abdul Asmau</h3>
                   <p className="text-sm text-gray-500">Switch account</p>
@@ -158,12 +126,12 @@ const GuestDashboardLayout = ({ children }: { children: React.ReactNode }) => {
                   <li
                     key={index}
                     className={`flex items-center ${
-                      collapsed ? 'justify-center px-2' : 'px-3'
+                      (isMobile || collapsed) ? 'justify-center px-2' : 'px-3'
                     }`}
                   >
                     <NavItem
                       icon={item.icon}
-                      name={item.name}
+                      name={!isMobile && !collapsed ? item.name : ''}
                       path={item.path}
                       count={item.count}
                     />
@@ -172,7 +140,7 @@ const GuestDashboardLayout = ({ children }: { children: React.ReactNode }) => {
               </ul>
             </nav>
 
-            {!collapsed ? (
+            {!isMobile && !collapsed ? (
               <div className="mt-6 rounded-xl bg-gray-900 p-4 text-white">
                 <h3 className="mb-1 font-medium">Earn While You Share</h3>
                 <p className="mb-3 text-sm text-gray-300">
@@ -185,31 +153,35 @@ const GuestDashboardLayout = ({ children }: { children: React.ReactNode }) => {
             ) : (
               <div className="mt-6 rounded-xl bg-gray-900 p-3 text-white">
                 <button className="w-full rounded-lg bg-orange-500 px-1 py-2 text-sm text-white">
-                  <Anchor />
+                  <AnchorIcon />
                 </button>
               </div>
             )}
 
-            <button
-              onClick={() => setCollapsed(!collapsed)}
-              className="hidden md:flex justify-center border-t p-4 hover:bg-gray-100"
-            >
-              {collapsed ? (
-                <ChevronRight className="h-6 w-6" />
-              ) : (
-                <ChevronLeft className="h-6 w-6" />
-              )}
-            </button>
+            {!isMobile && (
+              <button
+                onClick={() => setCollapsed(!collapsed)}
+                className="flex justify-center border-t p-4 hover:bg-gray-100"
+              >
+                {collapsed ? (
+                  <ChevronRight className="h-6 w-6" />
+                ) : (
+                  <ChevronLeft className="h-6 w-6" />
+                )}
+              </button>
+            )}
           </div>
         </aside>
 
         {/* Main Content */}
         <main
           className={cn(
-            'flex-1 transition-all duration-300 p-4',
+            'flex-1 transition-all duration-300',
             isMobile 
-              ? 'w-full' 
-              : (collapsed ? 'md:ml-20' : 'md:ml-64')
+              ? 'ml-20' 
+              : collapsed 
+                ? 'ml-20' 
+                : 'ml-64'
           )}
         >
           {children}
