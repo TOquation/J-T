@@ -199,7 +199,7 @@ const GuestDashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
             {!isMobile && (
               <button
-                onClick={() => setCollapsed(!collapsed)}
+                onClick={() => setCollapsed(collapsed)}
                 className="flex justify-center border-t p-4 hover:bg-gray-100"
               >
                 {collapsed ? (
