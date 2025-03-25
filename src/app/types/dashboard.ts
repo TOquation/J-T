@@ -1,4 +1,4 @@
-
+import { Calendar, TrendingUp, LucideIcon } from 'lucide-react';
 
 interface StatCardProps {
     title: string;
