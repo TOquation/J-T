@@ -188,7 +188,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         {/* Main Content */}
         <main
           className={cn(
-            'flex-1 p-6 transition-all duration-300',
+            'flex-1 px-4 transition-all duration-300',
             collapsed ? 'ml-20' : 'ml-64'
           )}
         >
