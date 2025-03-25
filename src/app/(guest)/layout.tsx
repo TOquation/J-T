@@ -36,7 +36,7 @@ const GuestDashboardLayout = ({ children }: { children: React.ReactNode }) => {
     // Cleanup event listener
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-
+  const [isOpen, setIsOpen] = useState(false);
   const navItems = [
     { name: 'V Home', icon: LayoutDashboard, path: '/guest/home', count: null },
     { name: 'Wishlist', icon: List, path: '/guest/wishlist', count: null },
@@ -52,14 +52,32 @@ const GuestDashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="min-h-screen">
       {/* Top Navigation */}
-      <nav className="fixed top-0 z-50 h-16 w-full border-b bg-dark">
+      <nav className="fixed top-0 z-50 h-16 w-full bg-dark">
         <div className="flex h-full items-center justify-between px-4">
           <div className="flex items-center gap-2">
-            <span className="text-xl font-semibold text-orange-500">V</span>
-            <span className="font-semibold text-white">HOSPITALITY</span>
+            {/* Mobile Menu Button */}
+            <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
+              <img
+                src="/images/grid.png" // Change the path based on your file location
+                alt="Menu"
+                className="w-7 h-7"
+              />
+            </button>
+            <div className='flex md:hidden items-center font-poppins'>
+              <Avatar className='rounded-none'>
+                <AvatarImage src="https://github.com/shadcn.png" />
+                <AvatarFallback>AA</AvatarFallback>
+              </Avatar>
+              <div>
+                <p className='text-sm text-white font-semibold'>Abdul Asmau</p>
+                <p className='text-xs text-[#ef5e17]'>Guest</p>
+              </div>
+            </div>
+            <span className="text-xl font-semibold hidden md:flex text-orange-500">V</span>
+            <span className="font-semibold hidden md:flex text-white">HOSPITALITY</span>
           </div>
 
-          <div className="flex items-center gap-4 rounded-2xl bg-white p-1">
+          <div className=" hidden md:flex items-center gap-4 rounded-2xl bg-white p-1">
             <div className="flex items-center gap-2 rounded-xl bg-orange-500 px-3 py-2">
               <UserIcon color="white" size={15} />
               <span className="text-sm text-white">Guest</span>
@@ -83,11 +101,32 @@ const GuestDashboardLayout = ({ children }: { children: React.ReactNode }) => {
       </nav>
 
       {/* Sidebar and Main Content */}
+      <div
+        className={`fixed top-0 left-0 h-full w-64 bg-[#221e1f] p-8.5 transform ${isOpen ? "translate-x-0" : "-translate-x-full"} transition-transform duration-300 md:hidden hidden`}
+      >
+        <div className="pb-5">
+          <button
+        onClick={() => setIsOpen(false)}
+        className="absolute top-4 right-4 text-white hover:text-gray-400 outline-none"
+          >
+        ✕
+          </button>
+        </div>
+        <ul className="mt-10 space-y-5">
+          <li><a href="#" className="block text-white hover:text-gray-400 hover:outline-1 outline-white p-3 font-semibold text-[15px]">Home</a></li>
+          <li><a href="#" className="block text-white hover:text-gray-400 hover:outline-1 outline-white p-3 font-semibold text-[15px]">Host your home</a></li>
+          <li><a href="#" className="block text-white hover:text-gray-400 hover:outline-1 outline-white p-3 font-semibold text-[15px]">Become an affiliate</a></li>
+          <li><a href="#" className="block text-white hover:text-gray-400 hover:outline-1 outline-white p-3 font-semibold text-[15px]">Login</a></li>
+          <li><a href="#" className="block text-white hover:text-gray-400 hover:outline-1 outline-white p-3 font-semibold text-[15px]">Create an account</a></li>
+          <li><a href="#" className="block text-white hover:text-gray-400 hover:outline-1 outline-white p-3 font-semibold text-[15px]">Blog</a></li>
+        </ul>
+      </div>
+      
       <div className="flex h-screen px-4 pt-20">
         {/* Sidebar */}
         <aside
           className={cn(
-            'fixed flex h-full flex-col rounded-2xl bg-[#F99C1C1A] transition-all duration-300',
+            'fixed hidden md:flex h-full flex-col rounded-2xl bg-[#F99C1C1A] transition-all duration-300',
             // Responsive width
             isMobile 
               ? 'w-20' 
@@ -178,10 +217,10 @@ const GuestDashboardLayout = ({ children }: { children: React.ReactNode }) => {
           className={cn(
             'flex-1 transition-all duration-300',
             isMobile 
-              ? 'ml-20' 
+              ? 'md:ml-20' 
               : collapsed 
-                ? 'ml-20' 
-                : 'ml-64'
+                ? 'md:ml-20' 
+                : 'md:ml-64'
           )}
         >
           {children}
