@@ -38,8 +38,6 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
     { name: 'Earnings', icon: DollarSign, count: null },
   ];
 
-  <Button onClick={() => setCollapsed(!collapsed)}>Open</Button>;
-
   return (
     <div className="min-h-screen">
       {/* Top Navigation */}
@@ -74,15 +72,15 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       </nav>
 
       {/* Sidebar and Main Content */}
-      <div className="flex h-screen px-4 pt-20">
+      <div className="flex h-screen pt-20">
         {/* Sidebar */}
         <aside
           className={cn(
-            'fixed flex h-full flex-col rounded-2xl bg-[#F99C1C1A] transition-all duration-300',
-            collapsed ? 'w-20' : 'w-64'
+            // Hide sidebar on mobile, show on lg screens
+            'hidden lg:flex lg:fixed h-full flex-col rounded-2xl bg-[#F99C1C1A] transition-all duration-300',
+            collapsed ? 'lg:w-20' : 'lg:w-64'
           )}
         >
-          {/* <Button onClick={() => setCollapsed(!collapsed)}>Open</Button>; */}
           <div className={`${collapsed ? 'p-3' : 'p-4'} flex-1`}>
             <div
               className={cn(
@@ -182,14 +180,13 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
               )}
             </button>
           </div>
-          {/* Collapse Toggle Button */}
         </aside>
 
         {/* Main Content */}
         <main
           className={cn(
-            'flex-1 px-4 transition-all duration-300',
-            collapsed ? 'ml-20' : 'ml-64'
+            'bg-[#F8FAFC] flex-1 px-4 transition-all duration-300','lg:ml-0',
+            collapsed ? 'lg:ml-20' : 'lg:ml-64'
           )}
         >
           {children}
