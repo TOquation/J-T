@@ -12,7 +12,7 @@ const OverallRating = () => {
     { label: 'Location', score: 4.5 },
   ];
   return (
-    <div className="hidden lg:block lg:w-[20%]">
+    <div className="hidden lg:block w-full">
       <div className="flex flex-col space-y-2">
         <div className="w-full items-center justify-between">
           <h3 className="font-poppins text-base font-bold text-[#2F2F2F]">
