@@ -39,7 +39,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-y-auto bg-[#F8FAFC]">
       {/* Top Navigation */}
       <nav className="fixed top-0 z-50 h-16 w-full border-b bg-dark">
         <div className="flex h-full items-center justify-between px-4">
@@ -185,7 +185,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
         {/* Main Content */}
         <main
           className={cn(
-            'bg-[#F8FAFC] flex-1 px-4 transition-all duration-300','lg:ml-0',
+            'flex-1 px-4 transition-all duration-300','lg:ml-0',
             collapsed ? 'lg:ml-20' : 'lg:ml-64'
           )}
         >

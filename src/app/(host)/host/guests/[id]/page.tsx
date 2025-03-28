@@ -1,19 +1,24 @@
+import React from 'react';
 import DotMenuIcon from '@/components/icons/dots';
 import { Separator } from '@radix-ui/react-separator';
-import { Clock, Mail, Phone, Star } from 'lucide-react';
-import React from 'react';
+import { ArrowLeft, Clock, Mail, Phone, Search, Star } from 'lucide-react';
+
+import { DataTable } from '@/components/host-components/table/table';
 
 const GuestProfile = () => {
   return (
     <div>
-      <div className="flex gap-4">
+      <div className="mb-4 gap-4 lg:flex">
         {/* profile */}
-        <div className="w-[30%] rounded-lg bg-white px-3 pb-5">
+        <div className="rounded-lg bg-white px-3 pb-5 lg:w-[30%]">
           {/* title */}
           <div className="mb-12 flex items-center justify-between">
+            <div className='flex space-x-2'>
+            <ArrowLeft className='lg:hidden'/>
             <h3 className="text-base font-bold">Profile</h3>
+            </div>
             <div>
-              <DotMenuIcon className="font-bold" />
+              <DotMenuIcon className="hidden lg:block font-bold" />
             </div>
           </div>
           {/* title */}
@@ -50,33 +55,25 @@ const GuestProfile = () => {
           <Separator className="my-4 h-[2px] w-full bg-gray-300" />
           <div className="space-y-5">
             <h3 className="font-bold">Personal Information</h3>
-            <div className="flex flex-col gap-3">
-              <div className="flex space-x-9 text-left">
+            <div className="flex items-center justify-between max-w-xs">
+              <div className="space-y-5">
                 <div>
-                  <span className="text-gray-500">Date of Birth</span>
-                  <h3 className="text-base font-semibold text-[#181A20]">
-                    June 15, 1985
-                  </h3>
+                  <h3>Date of Birth</h3>
+                  <span>June 15, 1985</span>
                 </div>
                 <div>
-                  <span className="text-gray-500">Gender</span>
-                  <h3 className="text-base font-semibold text-[#181A20]">
-                    Male
-                  </h3>
+                  <h3>Nationality</h3>
+                  <span>Nigeria</span>
                 </div>
               </div>
-              <div className="flex space-x-16 text-left">
+              <div className="space-y-5 text-left">
                 <div>
-                  <span className="text-gray-500">Nationality</span>
-                  <h3 className="text-base font-semibold text-[#181A20]">
-                    Nigeria
-                  </h3>
+                  <h3>Date of Birth</h3>
+                  <span>June 15, 1985</span>
                 </div>
                 <div>
-                  <span className="text-gray-500">Identification</span>
-                  <h3 className="text-base font-semibold text-[#181A20]">
-                    Passport
-                  </h3>
+                  <h3>Nationality</h3>
+                  <span>Nigeria</span>
                 </div>
               </div>
             </div>
@@ -85,13 +82,13 @@ const GuestProfile = () => {
         {/* profile */}
 
         {/* booking info */}
-        <div className="flex w-full gap-4 rounded-lg bg-white px-3">
+        <div className="flex w-full flex-col gap-4 rounded-lg bg-white px-3 pt-4 lg:flex-row lg:pt-0">
           {/* booking info */}
-          <div className="w-[70%]">
+          <div className="w-full lg:w-[70%]">
             <div className="mb-10 flex justify-between text-base font-bold text-[#2F2F2F]">
               <h3>Booking info</h3>
               <div>
-                <DotMenuIcon className="font-bold" />
+                <DotMenuIcon className="font-bold hidden lg:block" />
               </div>
             </div>
             <div className="space-y-2">
@@ -168,7 +165,7 @@ const GuestProfile = () => {
           </div>
 
           {/* room info */}
-          <div className="flex-1 rounded-lg bg-[#F8FAFC] p-6">
+          <div className="flex-1 rounded-lg bg-[#F8FAFC] p-3 lg:p-6">
             <div className="mb-10 flex justify-between text-base font-bold text-[#2F2F2F]">
               <h3>Room info</h3>
               <h3 className="text-[#8b8787]">View Details</h3>
@@ -176,19 +173,20 @@ const GuestProfile = () => {
             {/* room card */}
             <div>
               <div>
-                <img 
-                src="/host-image/profilehost.jpeg" 
-                alt="" 
-                className="rounded-lg" />
+                <img
+                  src="/host-image/profilehost.jpeg"
+                  alt=""
+                  className="rounded-lg"
+                />
               </div>
-              <div className='flex my-3'>
+              <div className="my-3 flex justify-between">
                 <div>
                   <h3>2 Bedroom Luxury ShortLet Apartment</h3>
                   <span>Maitama FCT Abuja</span>
                 </div>
 
-                <div className='flex space-x-1'>
-                  <Star className='text-[#DF9409]'/>
+                <div className="flex space-x-1">
+                  <Star className="text-[#DF9409]" />
                   <span>5</span>
                 </div>
               </div>
@@ -196,13 +194,38 @@ const GuestProfile = () => {
 
               {/* summary price */}
               <div>
-                <div>
-                  <h3>Price Summary</h3>
-                  <span>Pending</span>
+                <div className="flex items-center space-x-6">
+                  <h3 className="text-base font-bold">Price Summary</h3>
+                  <span className="rounded-md bg-[#0899227D] p-1">Paid</span>
+                </div>
+                <div className="mt-6 space-y-2 text-[#717171]">
+                  <div className="flex justify-between">
+                    <h3>Price per night</h3>
+                    <span>N120,000</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <h3>Caution fee</h3>
+                    <span>N 50,000</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <h3>8% VAT</h3>
+                    <span>N 300</span>
+                  </div>
+                  <div className="flex justify-between font-bold text-[#2F2F2F]">
+                    <h3>Total price</h3>
+                    <span>N173,000</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* table */}
+      <div>
+        <div className="">
+          <DataTable />
         </div>
       </div>
     </div>
